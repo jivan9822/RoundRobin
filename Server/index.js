@@ -6,7 +6,6 @@ app.use(express.json());
 
 app.use('/players', (req, res, next) => {
   const players = req.body.data;
-  console.log(players);
   const data = createGroup(players);
   res.send(data);
 });
