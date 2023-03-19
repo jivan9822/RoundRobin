@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import InputForm from './InputForm';
+import { useState } from 'react';
+import DisplayFinalData from './DisplayFinalData';
+import Cart from './Cart';
 
 function App() {
+  const [finalData, setFinalData] = useState([]);
+  const [displayData, setDisplayData] = useState(false);
+  const displayDataHandler = (data) => {
+    setDisplayData(true);
+  };
+  const getData = (data) => {
+    setFinalData([...data]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Cart>
+      {!displayData && (
+        <InputForm getData={getData} displayDataHandler={displayDataHandler} />
+      )}
+      {displayData && <DisplayFinalData finalData={finalData} />}
+    </Cart>
   );
 }
 
